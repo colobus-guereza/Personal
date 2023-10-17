@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Play Audio on Image Click</title>
+
+    <style>
+      /* Opacity change effect when the mouse pointer hovers over the image */
+      .fade-image {
+          transition: opacity 0.3s;
+      }
+
+      .fade-image:hover {
+          opacity: 0.7; /* Adjust the opacity value as needed */
+      }
+
+      /* Blink effect when the image is clicked */
+      .blink-image {
+          animation: blink 0.5s alternate;
+      }
+
+      @keyframes blink {
+          from {
+              opacity: 1;
+          }
+          to {
+              opacity: 0;
+          }
+      }
+  </style>
+
+</head>
+<body>
+    <img id="playButton" class="fade-image" src="profile.JPG" alt="Play Audio" width="1000">
+
+    <audio id="audioPlayer">
+        <source src="1234.mp3" type="audio/mpeg">
+        <source src="again.mp3" type="audio/mpeg">
+        <source src="breathing.mp3" type="audio/mpeg">
+        <source src="feeling.mp3" type="audio/mpeg">
+        <source src="gurae.mp3" type="audio/mpeg">
+        <source src="hgcute.mp3" type="audio/mpeg">
+        <source src="jaigurudeva.mp3" type="audio/mpeg">
+        <source src="jaigurukhm.mp3" type="audio/mpeg">
+        <source src="littleprince.mp3" type="audio/mpeg">
+        <source src="meherk.mp3" type="audio/mpeg">
+        <source src="meohae.mp3" type="audio/mpeg">
+        <source src="musicguide.mp3" type="audio/mpeg">
+        <!-- Add more <source> elements for different audio formats if needed -->
+    </audio>
+
+    <script>
+      const playButton = document.getElementById('playButton');
+      const audioPlayer = document.getElementById('audioPlayer');
+
+      // Array of audio sources
+      const audioSources = [
+          '1234.mp3',
+          'again.mp3',
+          'breathing.mp3',
+          'feeling.mp3',
+          'gurae.mp3',
+          'hgcute.mp3',
+          'jaigurudeva.mp3',
+          'jaigurukhm.mp3',
+          'littleprince.mp3',
+          'meherk.mp3',
+          'meohae.mp3',
+          'musicguide.mp3'
+          // Add more audio file paths as needed
+      ];
+
+      playButton.addEventListener('click', function() {
+          // Get a random index to select a random audio file
+          const randomIndex = Math.floor(Math.random() * audioSources.length);
+          const randomAudioSource = audioSources[randomIndex];
+
+          // Set the source of the audio element
+          audioPlayer.src = randomAudioSource;
+
+          // Play the selected audio
+          audioPlayer.play();
+
+          // Apply the "blink-image" class for the one-time blink effect
+          playButton.classList.add('blink-image');
+
+          // Remove the "blink-image" class after the animation completes
+          playButton.addEventListener('animationend', function() {
+              playButton.classList.remove('blink-image');
+          }, { once: true });
+      });
+  </script>
+</body>
+</html>
